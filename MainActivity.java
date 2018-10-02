@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Seek
 
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+            calculate();
         }
 
         /*
@@ -80,13 +80,14 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Seek
                 totalAmount.setText(currencyFormat.format(0));
                 tipAmount.setText(currencyFormat.format(0));
                 billAmount = 0;
+                Log.d("MainActivity", "something went wrong, or tip amount equals 0.");
             }
         }
 
         @Override
         public void afterTextChanged(Editable editable) {
 
-
+            calculate();
 
         }
 
@@ -104,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Seek
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        percent = seekBar.getProgress() / 100;
+        percent = seekBar.getProgress() * .01;
         calculate();
     }
 
